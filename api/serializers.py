@@ -7,11 +7,11 @@ def dump_object(object: dict) -> dict:
 def get_model(object: dict) -> str:
     return object["model"].partition(".")[-1]
 
-def serialize(objects: list[dict]|dict) -> dict:
+def serialize(objects: list[dict]|dict) -> list[dict]|dict:
     data = json.loads(serializers.serialize("json", objects))
     if not data:
         return {}
     if isinstance(data, list):
-        return {get_model(data[0]): [dump_object(object) for object in data]}
+        return [dump_object(object) for object in data]
     if isinstance(data, dict):
-        return {get_model(data): dump_object(data)}
+        return dump_object(data)
