@@ -2,7 +2,9 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import JsonResponse, HttpResponseBadRequest
 from api.models import Section
 from api.serializers import serialize
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def section_view(request: WSGIRequest, pk: int=None):
     if request.method == "GET":
         return JsonResponse(serialize(Section.objects.all()))
