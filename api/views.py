@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def section_view(request: WSGIRequest, pk: int=None):
     if request.method == "OPTIONS":
-        return HttpResponse(headers={"Allow": "OPTIONS, GET, HEAD, POST"})
+        return HttpResponse(headers={"Access-Control-Allow-Methods": "OPTIONS, GET, HEAD, POST"})
     if request.method == "GET":
         return JsonResponse(serialize(Section.objects.all()))
     elif request.method == "PUT":
