@@ -12,6 +12,6 @@ def serialize(objects: list[dict]|dict) -> list[dict]|dict:
     if not data:
         return {}
     if isinstance(data, list):
-        return [dump_object(object) for object in data]
+        return json.dumps([dump_object(object) for object in data])
     if isinstance(data, dict):
-        return dump_object(data)
+        return json.dumps(dump_object(data))
